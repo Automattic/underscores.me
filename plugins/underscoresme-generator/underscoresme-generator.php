@@ -194,7 +194,7 @@ class Underscores_Generator_Plugin {
 				// The following hack will remove the WordPress.com comment and include in functions.php.
 				$find = 'WordPress.com-specific functions';
 				$contents = preg_replace( '#/\*\*\n\s+\*\s+' . preg_quote( $find ) . '#i', '@wpcom_start', $contents );
-				$contents = preg_replace( '#/inc/wpcom\.php\' \);#i', '@wpcom_end', $contents );
+				$contents = preg_replace( '#/inc/wpcom\.php\';#i', '@wpcom_end', $contents );
 				$contents = preg_replace( '#@wpcom_start(.+)@wpcom_end\n?(\n\s)?#ims', '', $contents );
 			}
 		}
