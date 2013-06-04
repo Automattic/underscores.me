@@ -211,6 +211,7 @@ class Underscores_Generator_Plugin {
 		$slug = str_replace( '-', '_', $this->theme['slug'] );
 
 		// Regular treatment for all other files.
+		$contents = str_replace( "_s-", $slug . '-', $contents );
 		$contents = str_replace( "'_s'", sprintf( "'%s'",  $slug ), $contents );
 		$contents = str_replace( "_s_", $slug . '_', $contents );
 		$contents = preg_replace( '/\b_s\b/', $this->theme['name'], $contents );
