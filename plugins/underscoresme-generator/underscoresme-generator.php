@@ -184,6 +184,7 @@ class Underscores_Generator_Plugin {
 			foreach ( $theme_headers as $key => $value )
 				$contents = preg_replace( '/(' . preg_quote( $key ) . ':)\s?(.+)/', '\\1 ' . $value, $contents );
 
+			$contents = str_replace( "Textdomain: _s", sprintf( "Textdomain: %s", $this->theme['slug'] ), $contents );
 			$contents = preg_replace( '/\b_s\b/', $this->theme['name'], $contents );
 
 			return $contents;
