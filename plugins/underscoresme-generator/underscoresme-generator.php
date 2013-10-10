@@ -131,6 +131,10 @@ class Underscores_Generator_Plugin {
 					continue 2; // continue the parent foreach loop
 
 			$local_filename = str_replace( trailingslashit( $prototype_dir ), '', $filename );
+
+			if ( 'languages/_s.pot' == $local_filename )
+				$local_filename = sprintf( 'languages/%s.pot', $this->theme['slug'] );
+
 			$contents = file_get_contents( $filename );
 			$contents = apply_filters( 'underscoresme_generator_file_contents', $contents, $local_filename );
 			$zip->addFromString( trailingslashit( $this->theme['slug'] ) . $local_filename, $contents );
