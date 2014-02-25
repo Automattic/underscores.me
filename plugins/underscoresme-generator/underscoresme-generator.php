@@ -80,7 +80,7 @@ class Underscores_Generator_Plugin {
 			'author'      => 'Underscores.me',
 			'author_uri'  => 'http://underscores.me/',
 			'description' => 'Description',
-			'version'     => '1.0',
+			'version'     => '1.0.0',
 			'license'     => 'GNU General Public License',
 			'license_uri' => 'license.txt',
 			'tags'        => '',
