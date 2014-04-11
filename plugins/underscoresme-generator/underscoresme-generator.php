@@ -80,10 +80,6 @@ class Underscores_Generator_Plugin {
 			'author'      => 'Underscores.me',
 			'author_uri'  => 'http://underscores.me/',
 			'description' => 'Description',
-			'version'     => '1.0',
-			'license'     => 'GNU General Public License',
-			'license_uri' => 'license.txt',
-			'tags'        => '',
 			'wpcom'       => false,
 		);
 
@@ -179,10 +175,6 @@ class Underscores_Generator_Plugin {
 				'Author'      => $this->theme['author'],
 				'Author URI'  => esc_url_raw( $this->theme['author_uri'] ),
 				'Description' => $this->theme['description'],
-				'Version'     => $this->theme['version'],
-				'License'     => $this->theme['license'],
-				'License URI' => $this->theme['license_uri'],
-				'Tags'        => $this->theme['tags'],
 				'Text Domain' => $this->theme['slug'],
 			);
 
