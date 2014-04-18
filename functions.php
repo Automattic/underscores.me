@@ -141,7 +141,7 @@ function underscoresme_get_contributors() {
 	if ( false !== $contributors )
 		return $contributors;
 
-	$response = wp_remote_get( 'https://api.github.com/repos/Automattic/_s/contributors' );
+	$response = wp_remote_get( 'https://api.github.com/repos/Automattic/_s/contributors?per_page=100' );
 	if ( is_wp_error( $response ) )
 		return array();
 
@@ -149,7 +149,7 @@ function underscoresme_get_contributors() {
 	if ( ! is_array( $contributors ) )
 		return array();
 
-	set_transient( $transient_key, $contributors, 3600 );
+	set_transient( $transient_key, $contributors, HOUR_IN_SECONDS );
 
 	return (array) $contributors;
 }
