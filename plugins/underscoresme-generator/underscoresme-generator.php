@@ -51,6 +51,9 @@ class Underscores_Generator_Plugin {
 
 						<label for="underscoresme-description">Description</label>
 						<input type="text" id="underscoresme-description" name="underscoresme_description" placeholder="Description" />
+
+						<input type="checkbox" id="underscoresme-sass" name="underscoresme_sass" value="true">
+						<label for="underscoresme-sass" class="not-hidden-label">Include Sass?</label>
 					</section><!-- .generator-form-secondary -->
 				</section><!-- .generator-form-inputs -->
 
@@ -80,6 +83,7 @@ class Underscores_Generator_Plugin {
 			'author'      => 'Underscores.me',
 			'author_uri'  => 'http://underscores.me/',
 			'description' => 'Description',
+			'sass'        => false,
 			'wpcom'       => false,
 		);
 
@@ -104,6 +108,9 @@ class Underscores_Generator_Plugin {
 		if ( isset( $_REQUEST['underscoresme_author_uri'] ) && ! empty( $_REQUEST['underscoresme_author_uri'] ) )
 			$this->theme['author_uri'] = trim( $_REQUEST['underscoresme_author_uri'] );
 
+		if ( isset( $_REQUEST['underscoresme_sass'] ) )
+			$this->theme['underscoresme_sass'] = $_REQUEST['underscoresme_sass'];
+
 		$zip = new ZipArchive;
 		$zip_filename = sprintf( '/tmp/underscoresme-%s.zip', md5( print_r( $this->theme, true ) ) );
 		$res = $zip->open( $zip_filename, ZipArchive::CREATE && ZipArchive::OVERWRITE );
@@ -112,6 +119,10 @@ class Underscores_Generator_Plugin {
 
 		$exclude_files = array( 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		$exclude_directories = array( '.git', '.svn', '.', '..' );
+
+		if(! $this->theme['underscoresme_sass'] ){
+			$exclude_directories[] = 'sass';
+		}
 
 		if ( ! $this->theme['wpcom'] )
 			$exclude_files[] = 'wpcom.php';
