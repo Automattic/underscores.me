@@ -179,7 +179,7 @@ class Underscores_Generator_Plugin {
 			return $contents;
 
 		// Special treatment for style.css
-		if ( 'style.css' == $filename ) {
+		if( in_array( $file, array('style.css', 'style.scss'), true ) ){
 			$theme_headers = array(
 				'Theme Name'  => $this->theme['name'],
 				'Theme URI'   => esc_url_raw( $this->theme['uri'] ),
