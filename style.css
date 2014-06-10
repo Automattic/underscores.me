@@ -1181,6 +1181,12 @@ object {
 }
 
 @media (max-width: 500px) {
+	.site-header .site-description {
+		left: 0;
+		margin: 20px 0 0;
+		position: relative;
+		text-align: center;
+	}
 	#generator h1 {
 		width: 100%;
 	}
@@ -1201,6 +1207,11 @@ object {
 		float: none;
 		text-align: center;
 		margin: 0 auto;
+	}
+	.wrap {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing:    border-box;
+		box-sizing:         border-box;
 	}
 	#intro,
 	#features {
