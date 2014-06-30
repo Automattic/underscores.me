@@ -28,13 +28,13 @@ get_header(); ?>
 					<ul id="features">
 						<li>A just right amount of lean, well-commented, modern, HTML5 templates.</li>
 						<li>A helpful 404 template.</li>
-						<li>An optional sample custom header implementation in <code>inc/custom-header.php</code></li>
+						<li>An optional sample custom header implementation in <code>inc/custom-header.php</code>.</li>
 						<li>Custom template tags in <code>inc/template-tags.php</code> that keep your templates clean and neat and prevent code duplication.</li>
 						<li>Some small tweaks in <code>inc/extras.php</code> that can improve your theming experience.</li>
 						<li>A script at <code>js/navigation.js</code> that makes your menu a toggled dropdown on small screens (like your phone), ready for CSS artistry.</li>
-						<li>2 sample CSS layouts in <code>layouts/</code>: A sidebar on the right side of your content and a sidebar on the left side of your content.</li>
+						<li>2 sample CSS layouts in <code>layouts</code> for a sidebar on either side of your content.</li>
 						<li>Smartly organized starter CSS in <code>style.css</code> that will help you to quickly get your design off the ground.</li>
-						<li>The GPL license in license.txt. Use it to make something cool.</li>
+						<li>Licensed under GPLv2 or later. :) Use it to make something cool.</li>
 					</ul><!-- #features -->
 				</div><!-- .wrap -->
 			</section><!-- #about -->
