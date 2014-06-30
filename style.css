@@ -439,6 +439,10 @@ a:active {
 	text-align: center;
 	color: #DFDFD0;
 	overflow: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
 }
 
 .site-header .site-title span.site-header-bubblewrap:before {
