@@ -51,6 +51,9 @@ class Underscores_Generator_Plugin {
 
 						<label for="underscoresme-description">Description</label>
 						<input type="text" id="underscoresme-description" name="underscoresme_description" placeholder="Description" />
+
+						<input type="checkbox" id="underscoresme-sass" name="underscoresme_sass" value="1">
+						<label for="underscoresme-sass">_sassify!</label>
 					</section><!-- .generator-form-secondary -->
 				</section><!-- .generator-form-inputs -->
 
@@ -80,11 +83,13 @@ class Underscores_Generator_Plugin {
 			'author'      => 'Underscores.me',
 			'author_uri'  => 'http://underscores.me/',
 			'description' => 'Description',
+			'sass'        => false,
 			'wpcom'       => false,
 		);
 
-		$this->theme['name'] = trim( $_REQUEST['underscoresme_name'] );
-		$this->theme['slug'] = sanitize_title_with_dashes( $this->theme['name'] );
+		$this->theme['name']  = trim( $_REQUEST['underscoresme_name'] );
+		$this->theme['slug']  = sanitize_title_with_dashes( $this->theme['name'] );
+		$this->theme['sass']  = (bool) isset( $_REQUEST['underscoresme_sass'] );
 		$this->theme['wpcom'] = (bool) isset( $_REQUEST['can_i_haz_wpcom'] );
 
 		if ( isset( $_REQUEST['underscoresme_slug'] ) && ! empty( $_REQUEST['underscoresme_slug'] ) )
@@ -112,6 +117,10 @@ class Underscores_Generator_Plugin {
 
 		$exclude_files = array( 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		$exclude_directories = array( '.git', '.svn', '.', '..' );
+
+		if ( ! $this->theme['sass'] ) {
+			$exclude_directories[] = 'sass';
+		}
 
 		if ( ! $this->theme['wpcom'] )
 			$exclude_files[] = 'wpcom.php';
@@ -168,7 +177,7 @@ class Underscores_Generator_Plugin {
 			return $contents;
 
 		// Special treatment for style.css
-		if ( 'style.css' == $filename ) {
+		if ( in_array( $file, array( 'style.css', 'style.scss' ), true ) ) {
 			$theme_headers = array(
 				'Theme Name'  => $this->theme['name'],
 				'Theme URI'   => esc_url_raw( $this->theme['uri'] ),

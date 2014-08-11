@@ -511,7 +511,7 @@ a:active {
 .site-header .site-description {
 	display: block;
 	position: absolute;
-	top: 46%;	
+	top: 46%;
 	left: 50%;
 	margin-left: 130px;
 	text-align: left;
@@ -706,6 +706,10 @@ a:active {
 	display: none;
 }
 
+.generator-form-inputs [for="underscoresme-sass"] {
+	display: inline;
+}
+
 .generator-form-inputs input[type="text"] {
 	display: block;
 	width: 270px;
@@ -739,6 +743,10 @@ a:active {
 
 .wf-active .generator-form-submit input {
 	padding: 10px 20px;
+}
+
+.generator-form-optionstoggle {
+	display: block;
 }
 
 #generator-form a.generator-form-optionstoggle,
@@ -870,7 +878,7 @@ a:active {
 }
 
 #team li a:hover img {
-	opacity: 1;	
+	opacity: 1;
 	-webkit-filter: grayscale(100%);
 	-moz-filter: grayscale(100%);
 	-o-filter: grayscale(100%);
@@ -891,19 +899,19 @@ a:active {
 	top: 0;
 	content: attr(title);
 	background: rgb(208, 209, 104);
-	background: rgba(208, 209, 104, 0.90);	
+	background: rgba(208, 209, 104, 0.90);
 	border-radius: 140px;
 	text-align: center;
 	padding: 60px 0px 0;
-	
+
 	font-size: 10px;
 	font-weight: bold;
 	text-transform: uppercase;
 	color: #434B5C;
 	color: rgba(67,75,92,0.8);
-	
+
 	box-shadow: 0 0 0 1px rgba(208, 209, 104, 0.90), inset 0 0 0 1px rgba(208, 209, 104, 0.90);
-	
+
 	opacity: 0;
 }
 
@@ -1001,7 +1009,7 @@ a:active {
 	border-bottom: 1px solid rgba(255,255,255,0);
 }
 
-.site-info, 
+.site-info,
 .automattic-credit {
 	display: inline-block;
 	padding: 5px 30px;
@@ -1142,7 +1150,7 @@ object {
 ----------------------------------------------- */
 
 @media (max-width: 940px) {
-	html, 
+	html,
 	body,
 	#main {
 		max-width: 100%;
