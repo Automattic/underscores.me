@@ -702,12 +702,8 @@ a:active {
 	display: none;
 }
 
-.generator-form-inputs .not-hidden-label {
+.generator-form-inputs [for="underscoresme-sass"] {
 	display: inline;
-}
-
-.generator-form-optionstoggle{
-	display: block;
 }
 
 .generator-form-inputs input[type="text"] {
@@ -743,6 +739,10 @@ a:active {
 
 .wf-active .generator-form-submit input {
 	padding: 10px 20px;
+}
+
+.generator-form-optionstoggle {
+	display: block;
 }
 
 #generator-form a.generator-form-optionstoggle,
