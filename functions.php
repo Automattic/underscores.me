@@ -111,7 +111,7 @@ function underscoresme_widgets_init() {
 function underscoresme_scripts() {
 	global $post;
 
-	wp_enqueue_style( 'style', add_query_arg( 'v', 20120814, get_stylesheet_uri() ) );
+	wp_enqueue_style( 'style', add_query_arg( 'v', 20140811, get_stylesheet_uri() ) );
 	wp_enqueue_script( 'underscores-scripts', get_template_directory_uri() . '/js/underscores-scripts.js', array( 'jquery' ), '20120813' );
 	
 	/*wp_enqueue_script( 'small-menu', get_template_directory_uri() . '/js/small-menu.js', array( 'jquery' ), '20120206', true );
