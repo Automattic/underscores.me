@@ -439,6 +439,10 @@ a:active {
 	text-align: center;
 	color: #DFDFD0;
 	overflow: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
 }
 
 .site-header .site-title span.site-header-bubblewrap:before {
@@ -1189,6 +1193,12 @@ object {
 }
 
 @media (max-width: 500px) {
+	.site-header .site-description {
+		left: 0;
+		margin: 20px 0 0;
+		position: relative;
+		text-align: center;
+	}
 	#generator h1 {
 		width: 100%;
 	}
@@ -1209,6 +1219,11 @@ object {
 		float: none;
 		text-align: center;
 		margin: 0 auto;
+	}
+	.wrap {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing:    border-box;
+		box-sizing:         border-box;
 	}
 	#intro,
 	#features {
