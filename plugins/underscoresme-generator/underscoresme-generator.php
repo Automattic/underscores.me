@@ -171,7 +171,7 @@ class Underscores_Generator_Plugin {
 	function do_replacements( $contents, $filename ) {
 
 		// Replace only text files, skip png's and other stuff.
-		$valid_extensions = array( 'php', 'css', 'js', 'txt' );
+		$valid_extensions = array( 'php', 'css', 'scss', 'js', 'txt' );
 		$valid_extensions_regex = implode( '|', $valid_extensions );
 		if ( ! preg_match( "/\.({$valid_extensions_regex})$/", $filename ) )
 			return $contents;
