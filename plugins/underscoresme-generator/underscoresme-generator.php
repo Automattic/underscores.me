@@ -92,22 +92,26 @@ class Underscores_Generator_Plugin {
 		$this->theme['sass']  = (bool) isset( $_REQUEST['underscoresme_sass'] );
 		$this->theme['wpcom'] = (bool) isset( $_REQUEST['can_i_haz_wpcom'] );
 
-		if ( isset( $_REQUEST['underscoresme_slug'] ) && ! empty( $_REQUEST['underscoresme_slug'] ) )
-			if ( preg_match( '/^[a-z0-9\-_]+$/i', $_REQUEST['underscoresme_slug'] ) )
-				$this->theme['slug'] = trim( $_REQUEST['underscoresme_slug'] );
+		if ( ! empty( $_REQUEST['underscoresme_slug'] ) ) {
+			$this->theme['slug'] = sanitize_title_with_dashes( $_REQUEST['underscoresme_slug'] );
+		}
 
 		// Let's check if the slug can be a valid function name.
-		if ( ! preg_match( '/^[a-z_]\w+$/i', str_replace( '-', '_', $this->theme['slug'] ) ) )
+		if ( ! preg_match( '/^[a-z_]\w+$/i', str_replace( '-', '_', $this->theme['slug'] ) ) ) {
 			wp_die( 'Theme slug could not be used to generate valid function names. Please go back and try again.' );
+		}
 
-		if ( isset( $_REQUEST['underscoresme_description'] ) && ! empty( $_REQUEST['underscoresme_description'] ) )
+		if ( ! empty( $_REQUEST['underscoresme_description'] ) ) {
 			$this->theme['description'] = trim( $_REQUEST['underscoresme_description'] );
+		}
 
-		if ( isset( $_REQUEST['underscoresme_author'] ) && ! empty( $_REQUEST['underscoresme_author'] ) )
+		if ( ! empty( $_REQUEST['underscoresme_author'] ) ) {
 			$this->theme['author'] = trim( $_REQUEST['underscoresme_author'] );
+		}
 
-		if ( isset( $_REQUEST['underscoresme_author_uri'] ) && ! empty( $_REQUEST['underscoresme_author_uri'] ) )
+		if ( ! empty( $_REQUEST['underscoresme_author_uri'] ) ) {
 			$this->theme['author_uri'] = trim( $_REQUEST['underscoresme_author_uri'] );
+		}
 
 		$zip = new ZipArchive;
 		$zip_filename = sprintf( '/tmp/underscoresme-%s.zip', md5( print_r( $this->theme, true ) ) );
