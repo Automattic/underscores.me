@@ -151,16 +151,7 @@ class Underscores_Generator_Plugin {
 
 		$zip->close();
 
-		$user_agent = $_SERVER['HTTP_USER_AGENT'];
-		$stats_extras = array();
-		if ( $user_agent == '_sh' )
-			$stats_extras[] = '_sh';
-		else
-			$stats_extras[] = 'regular';
-
-		// Track downloads.
-		$stats_url = add_query_arg( 'x_underscoresme-downloads', implode( ',', $stats_extras ), 'http://stats.wordpress.com/g.gif?v=wpcom-no-pv&' );
-		wp_remote_get( $stats_url, array( 'blocking' => false ) );
+		$this->do_tracking();
 
 		header( 'Content-type: application/zip' );
 		header( sprintf( 'Content-Disposition: attachment; filename="%s.zip"', $this->theme['slug'] ) );
@@ -228,6 +219,33 @@ class Underscores_Generator_Plugin {
 		$contents = str_replace( "_s_", $slug . '_', $contents ); // Function names.
 		$contents = preg_replace( '/\b_s\b/', $this->theme['name'], $contents );
 		return $contents;
+	}
+	
+	function do_tracking() {
+		
+		// Track downloads.
+		$user_agent = 'regular';
+		if ( '_sh' == $_SERVER['HTTP_USER_AGENT'] ) {
+			$user_agent = '_sh';
+		}
+
+		// Track features.
+		$features   = array();
+		if ( $this->theme['sass'] ) {
+			$features[] = 'sass';
+		}
+		if ( $this->theme['wpcom'] ) {
+			$features[] = 'wpcom';
+		}
+		if ( empty( $features ) ) {
+			$features[] = 'none';
+		}
+		
+		wp_remote_get( add_query_arg( array(
+			'v'                         => 'wpcom-no-pv',
+			'x_underscoresme-downloads' => $user_agent,
+			'x_underscoresme-features'  => implode( ',', $features ),
+		), 'http://stats.wordpress.com/g.gif' ), array( 'blocking' => false ) );
 	}
 }
 new Underscores_Generator_Plugin;
