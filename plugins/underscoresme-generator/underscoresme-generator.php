@@ -119,7 +119,7 @@ class Underscores_Generator_Plugin {
 
 		$prototype_dir = dirname( __FILE__ ) . '/prototype/';
 
-		$exclude_files = array( 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
+		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		$exclude_directories = array( '.git', '.svn', '.', '..' );
 
 		if ( ! $this->theme['sass'] ) {
@@ -220,9 +220,9 @@ class Underscores_Generator_Plugin {
 		$contents = preg_replace( '/\b_s\b/', $this->theme['name'], $contents );
 		return $contents;
 	}
-	
+
 	function do_tracking() {
-		
+
 		// Track downloads.
 		$user_agent = 'regular';
 		if ( '_sh' == $_SERVER['HTTP_USER_AGENT'] ) {
@@ -240,7 +240,7 @@ class Underscores_Generator_Plugin {
 		if ( empty( $features ) ) {
 			$features[] = 'none';
 		}
-		
+
 		wp_remote_get( add_query_arg( array(
 			'v'                         => 'wpcom-no-pv',
 			'x_underscoresme-downloads' => $user_agent,
