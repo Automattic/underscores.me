@@ -182,9 +182,11 @@ class Underscores_Generator_Plugin {
 				'Text Domain' => $this->theme['slug'],
 			);
 
-			foreach ( $theme_headers as $key => $value )
+			foreach ( $theme_headers as $key => $value ) {
 				$contents = preg_replace( '/(' . preg_quote( $key ) . ':)\s?(.+)/', '\\1 ' . $value, $contents );
+			}
 
+			$contents = str_replace( '_s is based on Underscores', sprintf( '%s is based on Underscores',  $this->theme['name'] ), $contents );
 			$contents = preg_replace( '/\b_s\b/', $this->theme['name'], $contents );
 
 			return $contents;
