@@ -210,6 +210,12 @@ class Underscores_Generator_Plugin {
 			$contents = str_replace( 'Automattic', $this->theme['author'], $contents );
 			$contents = preg_replace( "#printf\\((\\s?__\\(\\s?'Theme:[^,]+,[^,]+,)([^,]+),#", sprintf( "printf(\\1 '%s',", esc_attr( $this->theme['name'] ) ), $contents );
 		}
+		
+		//Special treatment for readme.txt
+		if ( 'readme.txt' == $filename ) {
+			$contents = preg_replace('/(?<=Description ==) *.*?(.*(?=(== Installation)))/s', '<p>'.$this->theme['description'].'</p>', $contents );
+			$contents = str_replace( '_s, or underscores', $this->theme['name'], $contents );
+		}
 
 		// Function names can not contain hyphens.
 		$slug = str_replace( '-', '_', $this->theme['slug'] );
