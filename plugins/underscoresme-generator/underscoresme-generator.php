@@ -215,6 +215,7 @@ class Underscores_Generator_Plugin {
 		$slug = str_replace( '-', '_', $this->theme['slug'] );
 
 		// Regular treatment for all other files.
+		$contents = str_replace( "@package _s", sprintf( "@package %s", str_replace( ' ', '_', $this->theme['name'] ) ), $contents ); // Package declaration.
 		$contents = str_replace( "_s-", sprintf( "%s-",  $this->theme['slug'] ), $contents ); // Script/style handles.
 		$contents = str_replace( "'_s'", sprintf( "'%s'",  $this->theme['slug'] ), $contents ); // Textdomains.
 		$contents = str_replace( "_s_", $slug . '_', $contents ); // Function names.
