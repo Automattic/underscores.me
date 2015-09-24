@@ -87,7 +87,7 @@ class Underscores_Generator_Plugin {
 			'wpcom'       => false,
 		);
 
-		$this->theme['name']  = trim( $_REQUEST['underscoresme_name'] );
+		$this->theme['name']  = str_replace('*/', '', trim( $_REQUEST['underscoresme_name'] ) );
 		$this->theme['slug']  = sanitize_title_with_dashes( $this->theme['name'] );
 		$this->theme['sass']  = (bool) isset( $_REQUEST['underscoresme_sass'] );
 		$this->theme['wpcom'] = (bool) isset( $_REQUEST['can_i_haz_wpcom'] );
@@ -102,15 +102,15 @@ class Underscores_Generator_Plugin {
 		}
 
 		if ( ! empty( $_REQUEST['underscoresme_description'] ) ) {
-			$this->theme['description'] = trim( $_REQUEST['underscoresme_description'] );
+			$this->theme['description'] = str_replace('*/', '', trim( $_REQUEST['underscoresme_description'] ) );
 		}
 
 		if ( ! empty( $_REQUEST['underscoresme_author'] ) ) {
-			$this->theme['author'] = trim( $_REQUEST['underscoresme_author'] );
+			$this->theme['author'] = str_replace('*/', '', trim( $_REQUEST['underscoresme_author'] ) );
 		}
 
 		if ( ! empty( $_REQUEST['underscoresme_author_uri'] ) ) {
-			$this->theme['author_uri'] = trim( $_REQUEST['underscoresme_author_uri'] );
+			$this->theme['author_uri'] = str_replace('*/', '', trim( $_REQUEST['underscoresme_author_uri'] ) );
 		}
 
 		$zip = new ZipArchive;
