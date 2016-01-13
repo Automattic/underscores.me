@@ -213,7 +213,7 @@ class Underscores_Generator_Plugin {
 		
 		//Special treatment for readme.txt
 		if ( 'readme.txt' == $filename ) {
-			$contents = preg_replace('/(?<=Description ==) *.*?(.*(?=(== Installation)))/s', '<p>'.$this->theme['description'].'</p>', $contents );
+			$contents = preg_replace('/(?<=Description ==) *.*?(.*(?=(== Installation)))/s', "\n\n" . $this->theme['description'] . "\n\n", $contents );
 			$contents = str_replace( '_s, or underscores', $this->theme['name'], $contents );
 		}
 
