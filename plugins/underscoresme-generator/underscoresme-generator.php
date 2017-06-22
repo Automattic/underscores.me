@@ -211,7 +211,7 @@ class Underscores_Generator_Plugin {
 			$contents = preg_replace( "#printf\\((\\s?__\\(\\s?'Theme:[^,]+,[^,]+,)([^,]+),#", sprintf( "printf(\\1 '%s',", esc_attr( $this->theme['name'] ) ), $contents );
 		}
 		
-		//Special treatment for readme.txt
+		// Special treatment for readme.txt
 		if ( 'readme.txt' == $filename ) {
 			$contents = preg_replace('/(?<=Description ==) *.*?(.*(?=(== Installation)))/s', "\n\n" . $this->theme['description'] . "\n\n", $contents );
 			$contents = str_replace( '_s, or underscores', $this->theme['name'], $contents );
