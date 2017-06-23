@@ -119,7 +119,7 @@ class Underscores_Generator_Plugin {
 
 		$prototype_dir = dirname( __FILE__ ) . '/prototype/';
 
-		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
+		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'phpcs.xml.dist', '.jscsrc', '.jshintignore', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		$exclude_directories = array( '.git', '.svn', '.', '..' );
 
 		if ( ! $this->theme['sass'] ) {
