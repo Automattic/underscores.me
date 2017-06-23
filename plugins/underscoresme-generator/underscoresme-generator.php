@@ -119,7 +119,7 @@ class Underscores_Generator_Plugin {
 
 		$prototype_dir = dirname( __FILE__ ) . '/prototype/';
 
-		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'phpcs.xml.dist', '.jscsrc', '.jshintignore', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
+		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', '.jscsrc', '.jshintignore', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		$exclude_directories = array( '.git', '.svn', '.', '..' );
 
 		if ( ! $this->theme['sass'] ) {
@@ -205,7 +205,7 @@ class Underscores_Generator_Plugin {
 
 		// Special treatment for footer.php
 		if ( 'footer.php' == $filename ) {
-			// <?php printf( __( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="http://automattic.com/" rel="designer">Automattic</a>' );
+			// <?php printf( __( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="http://automattic.com/">Automattic</a>' );
 			$contents = str_replace( 'http://automattic.com/', esc_url( $this->theme['author_uri'] ), $contents );
 			$contents = str_replace( 'Automattic', $this->theme['author'], $contents );
 			$contents = preg_replace( "#printf\\((\\s?__\\(\\s?'Theme:[^,]+,[^,]+,)([^,]+),#", sprintf( "printf(\\1 '%s',", esc_attr( $this->theme['name'] ) ), $contents );
