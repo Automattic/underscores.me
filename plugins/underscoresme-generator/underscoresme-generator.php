@@ -205,8 +205,8 @@ class Underscores_Generator_Plugin {
 
 		// Special treatment for footer.php
 		if ( 'footer.php' == $filename ) {
-			// <?php printf( __( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="http://automattic.com/">Automattic</a>' );
-			$contents = str_replace( 'http://automattic.com/', esc_url( $this->theme['author_uri'] ), $contents );
+			// <?php printf( __( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="https://automattic.com/">Automattic</a>' );
+			$contents = str_replace( 'https://automattic.com/', esc_url( $this->theme['author_uri'] ), $contents );
 			$contents = str_replace( 'Automattic', $this->theme['author'], $contents );
 			$contents = preg_replace( "#printf\\((\\s?__\\(\\s?'Theme:[^,]+,[^,]+,)([^,]+),#", sprintf( "printf(\\1 '%s',", esc_attr( $this->theme['name'] ) ), $contents );
 		}
