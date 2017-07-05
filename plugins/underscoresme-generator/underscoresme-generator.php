@@ -120,7 +120,7 @@ class Underscores_Generator_Plugin {
 		$prototype_dir = dirname( __FILE__ ) . '/prototype/';
 
 		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', '.jscsrc', '.jshintignore', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
-		$exclude_directories = array( '.git', '.svn', '.', '..' );
+		$exclude_directories = array( '.git', '.svn', '.github', '.', '..' );
 
 		if ( ! $this->theme['sass'] ) {
 			$exclude_directories[] = 'sass';
@@ -210,7 +210,7 @@ class Underscores_Generator_Plugin {
 			$contents = str_replace( 'Automattic', $this->theme['author'], $contents );
 			$contents = preg_replace( "#printf\\((\\s?__\\(\\s?'Theme:[^,]+,[^,]+,)([^,]+),#", sprintf( "printf(\\1 '%s',", esc_attr( $this->theme['name'] ) ), $contents );
 		}
-		
+
 		// Special treatment for readme.txt
 		if ( 'readme.txt' == $filename ) {
 			$contents = preg_replace('/(?<=Description ==) *.*?(.*(?=(== Installation)))/s', "\n\n" . $this->theme['description'] . "\n\n", $contents );
