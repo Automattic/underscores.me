@@ -706,8 +706,14 @@ a:active {
 	display: none;
 }
 
-.generator-form-inputs [for="underscoresme-sass"] {
+.generator-form-inputs [for="underscoresme-sass"],
+.generator-form-inputs [for="underscoresme-woocommerce"] {
 	display: inline;
+}
+
+.generator-form-inputs [for="underscoresme-woocommerce"]:after {
+	content: "\A";
+	white-space: pre;
 }
 
 .generator-form-inputs input[type="text"] {

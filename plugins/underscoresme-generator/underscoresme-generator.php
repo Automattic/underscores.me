@@ -52,6 +52,9 @@ class Underscores_Generator_Plugin {
 						<label for="underscoresme-description">Description</label>
 						<input type="text" id="underscoresme-description" name="underscoresme_description" placeholder="Description" />
 
+						<input type="checkbox" id="underscoresme-woocommerce" name="underscoresme_woocommerce" value="1">
+						<label for="underscoresme-woocommerce">WooCommerce boilerplate</label>
+
 						<input type="checkbox" id="underscoresme-sass" name="underscoresme_sass" value="1">
 						<label for="underscoresme-sass">_sassify!</label>
 					</section><!-- .generator-form-secondary -->
@@ -87,10 +90,11 @@ class Underscores_Generator_Plugin {
 			'wpcom'       => false,
 		);
 
-		$this->theme['name']  = trim( $_REQUEST['underscoresme_name'] );
-		$this->theme['slug']  = sanitize_title_with_dashes( $this->theme['name'] );
-		$this->theme['sass']  = (bool) isset( $_REQUEST['underscoresme_sass'] );
-		$this->theme['wpcom'] = (bool) isset( $_REQUEST['can_i_haz_wpcom'] );
+		$this->theme['name']        = trim( $_REQUEST['underscoresme_name'] );
+		$this->theme['slug']        = sanitize_title_with_dashes( $this->theme['name'] );
+		$this->theme['sass']        = (bool) isset( $_REQUEST['underscoresme_sass'] );
+		$this->theme['woocommerce'] = (bool) isset( $_REQUEST['underscoresme_woocommerce'] );
+		$this->theme['wpcom']       = (bool) isset( $_REQUEST['can_i_haz_wpcom'] );
 
 		if ( ! empty( $_REQUEST['underscoresme_slug'] ) ) {
 			$this->theme['slug'] = sanitize_title_with_dashes( $_REQUEST['underscoresme_slug'] );
@@ -126,8 +130,19 @@ class Underscores_Generator_Plugin {
 			$exclude_directories[] = 'sass';
 		}
 
-		if ( ! $this->theme['wpcom'] )
+		if ( ! $this->theme['woocommerce'] ) {
+			$exclude_files[] = 'woocommerce.css';
+			$exclude_files[] = 'woocommerce.php';
+
+			if ( $this->theme['sass'] ) {
+				$exclude_files[]       = 'woocommerce.scss';
+				$exclude_directories[] = 'sass/shop';
+			}
+		}
+
+		if ( ! $this->theme['wpcom'] ) {
 			$exclude_files[] = 'wpcom.php';
+		}
 
 		$iterator = new RecursiveDirectoryIterator( $prototype_dir );
 		foreach ( new RecursiveIteratorIterator( $iterator ) as $filename ) {
@@ -199,6 +214,14 @@ class Underscores_Generator_Plugin {
 				$find = 'WordPress.com-specific functions';
 				$contents = preg_replace( '#/\*\*\n\s+\*\s+' . preg_quote( $find ) . '#i', '@wpcom_start', $contents );
 				$contents = preg_replace( '#/inc/wpcom\.php\';#i', '@wpcom_end', $contents );
+				$contents = preg_replace( '#@wpcom_start(.+)@wpcom_end\n?(\n\s)?#ims', '', $contents );
+			}
+
+			if ( ! $this->theme['woocommerce'] ) {
+				// The following hack will remove the WooCommerce comment and include in functions.php.
+				$find = 'Load WooCommerce compatibility file.';
+				$contents = preg_replace( '#/\*\*\n\s+\*\s+' . preg_quote( $find ) . '#i', '@wpcom_start', $contents );
+				$contents = preg_replace( '#/inc/woocommerce\.php\';\n\}#i', '@wpcom_end', $contents );
 				$contents = preg_replace( '#@wpcom_start(.+)@wpcom_end\n?(\n\s)?#ims', '', $contents );
 			}
 		}
