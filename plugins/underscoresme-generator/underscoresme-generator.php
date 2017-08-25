@@ -265,6 +265,9 @@ class Underscores_Generator_Plugin {
 		if ( $this->theme['sass'] ) {
 			$features[] = 'sass';
 		}
+		if ( $this->theme['woocommerce'] ) {
+			$features[] = 'woocommerce';
+		}
 		if ( $this->theme['wpcom'] ) {
 			$features[] = 'wpcom';
 		}
