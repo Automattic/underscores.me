@@ -240,6 +240,10 @@ class Underscores_Generator_Plugin {
 			$contents = str_replace( '_s, or underscores', $this->theme['name'], $contents );
 		}
 
+		if ( 'phpcs.xml.dist' == $filename ) {
+			$contents = str_replace( '"_s"', '"' . $this->theme['slug'] . '"', $contents );
+		}
+
 		// Function names can not contain hyphens.
 		$slug = str_replace( '-', '_', $this->theme['slug'] );
 
