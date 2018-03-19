@@ -181,7 +181,7 @@ class Underscores_Generator_Plugin {
 	function do_replacements( $contents, $filename ) {
 
 		// Replace only text files, skip png's and other stuff.
-		$valid_extensions = array( 'php', 'css', 'scss', 'js', 'txt' );
+		$valid_extensions = array( 'php', 'css', 'scss', 'js', 'txt', 'dist' );
 		$valid_extensions_regex = implode( '|', $valid_extensions );
 		if ( ! preg_match( "/\.({$valid_extensions_regex})$/", $filename ) )
 			return $contents;
@@ -242,6 +242,21 @@ class Underscores_Generator_Plugin {
 
 		// Function names can not contain hyphens.
 		$slug = str_replace( '-', '_', $this->theme['slug'] );
+
+		// Special treatment for phpcs.xml.dist
+		if ( 'phpcs.xml.dist' == $filename ) {
+			preg_match_all( '/<property name="([a-z_]+)" type="array" value="_s" ?\/>/', $contents, $matches, PREG_SET_ORDER );
+
+			foreach ( $matches as $match ) {
+				if ( 'text_domain' === $match[1] ) {
+					$replace = str_replace( '_s', $this->theme['slug'], $match[0] );
+				} elseif ( 'prefixes' === $match[1] ) {
+					$replace = str_replace( '_s', $slug, $match[0] );
+				}
+
+				$contents = str_replace( $match[0], $replace, $contents );
+			}
+		}
 
 		// Regular treatment for all other files.
 		$contents = str_replace( "@package _s", sprintf( "@package %s", str_replace( ' ', '_', $this->theme['name'] ) ), $contents ); // Package declaration.
