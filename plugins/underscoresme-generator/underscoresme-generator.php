@@ -246,6 +246,7 @@ class Underscores_Generator_Plugin {
 		// Regular treatment for all other files.
 		$contents = str_replace( "@package _s", sprintf( "@package %s", str_replace( ' ', '_', $this->theme['name'] ) ), $contents ); // Package declaration.
 		$contents = str_replace( "_s-", sprintf( "%s-",  $this->theme['slug'] ), $contents ); // Script/style handles.
+		$contents = str_replace( "'_S_'", sprintf( "'%s_'",  strtoupper( $this->theme['slug'] ) ), $contents ); // Verion constant.
 		$contents = str_replace( "'_s'", sprintf( "'%s'",  $this->theme['slug'] ), $contents ); // Textdomains.
 		$contents = str_replace( "_s_", $slug . '_', $contents ); // Function names.
 		$contents = preg_replace( '/\b_s\b/', $this->theme['name'], $contents );
